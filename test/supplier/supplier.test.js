@@ -1,24 +1,36 @@
-// 1 - Primero creamos un usuario
-// 2 - Iniciamos sesión y guardamos el token
-// 3 - Realizamos todos los test 
-// 4 - Finalmente, borramos el usuario
-
 const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDefaultUser');
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
+const registerFetch = require("./fetchData/registerFetch");
 
+let defaultSupplier = Object();
+            defaultSupplier.name = "Default supplier";
+            defaultSupplier.number = 12345678;
+            defaultSupplier.days = 3;
+            defaultSupplier.calculateType = "Palets";
+            defaultSupplier.minPalets = 26;
+            defaultSupplier.maxPalets = 26;
+
+// Primero creamos un usuario y guardamos el token.
 let token = '';
-    // 3 - Realizamos todos los test 
 beforeAll(async () => {
     token = await initDefaultUser();
 })
+// Finalmente, borramos el usuario
 afterAll(async () => {
     await deleteDefaultUser(token);
 })
 describe('Supplier tests', () => {
     describe('Register', () => {
         
-        test("pasamos nombre incorrecto", () => {
-            console.log("token")
+        test("pasamos nombre incorrecto", async () => {
+            // Arrange
+            let supplier = defaultSupplier;
+            supplier.name = "";
+            // Act
+            const response = await registerFetch(supplier, token);
+            console.log(response.error.message)
+            // Assert
+            expect(response.error.message).toBe("Error")
         })
         // pasamos nombre incorrecto
         // pasamos número incorrecto
