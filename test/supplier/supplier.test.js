@@ -116,21 +116,24 @@ describe('Supplier tests', () => {
         })
         test("modificando número", async () => {
             // Arrange
-            /* const auxSupplier = Object();
-            auxSupplier.number = 87654321; */
-            /* const beforeSupplier = await getSupplierFetch(12345678, token);
-            console.log(beforeSupplier)
-            const supplierId = 0; */
+            const auxSupplier = Object();
+            auxSupplier.name = supplier.name;
+            auxSupplier.number = 87654321;
+            const beforeSupplier = await getSupplierFetch(12345678, token);
+            const supplierId = beforeSupplier.user + auxSupplier.number;
             // Act
-            /* const response = await updateFetch(auxSupplier, 12345678, token);
+            const response = await updateFetch(auxSupplier, 12345678, token);
+            console.log(response)
             // Assert
             expect(response.message).toBe("Proveedor modificado correctamente");
-            expect(response.supplier.name).toBe(auxSupplier.name);
-            expect(parseInt(response.supplier.number)).toBe(supplier.number);
+            expect(response.supplier.name).toBe(supplier.name);
+            expect(parseInt(response.supplier.number)).toBe(auxSupplier.number);
             expect(response.supplier.days).toBe(supplier.days);
             expect(response.supplier.calculateType).toBe(supplier.calculateType);
             expect(response.supplier.minPalets).toBe(supplier.minPalets);
-            expect(response.supplier.maxPalets).toBe(supplier.maxPalets); */
+            expect(response.supplier.maxPalets).toBe(supplier.maxPalets);
+            let id = response.supplier.user + supplier.number;
+            expect(response.supplier.id).toBe(id);
         })
         // modificamos tipo de calculo palets
         // modificamos tipo de cálculo kilos
