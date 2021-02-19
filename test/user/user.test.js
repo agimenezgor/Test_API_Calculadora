@@ -1,4 +1,8 @@
 const registerFetch = require('./fetchData/registerFetch');
+let user1 = Object();
+user1.name = "User1";
+user1.email = "user1@user1.com";
+user1.password = "12345678"
 
 describe('User tests', () => {
     describe('Register tests', () => {
@@ -38,11 +42,6 @@ describe('User tests', () => {
             
         })
         test("Pasamos datos correctos", async () => {
-            // Arrange
-            let user1 = Object();
-            user1.name = "User1";
-            user1.email = "user1@user1.com";
-            user1.password = "12345678"
             // Act
             const response = await registerFetch(user1);
             // Assert
