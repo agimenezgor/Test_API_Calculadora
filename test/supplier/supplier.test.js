@@ -213,7 +213,27 @@ describe('Supplier tests', () => {
                 expect(response.message).toBe("Proveedor modificado correctamente");
             })
         })
-            // modificamos tipo de cálculo franco
+        describe('Modificando tipo de cálculo a Franco', () => {
+            test("sin añadir palets", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Franco";
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                // Assert
+                expect(response.message).toBe("Es necesario modificar también las variables minPalets y maxPalets");
+            })
+            test("modificado correctamente", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Franco";
+                auxSupplier.money = 22;
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                // Assert
+                expect(response.message).toBe("Es necesario modificar también las variables minPalets y maxPalets");
+            })
+        })
     })
     /* describe('getAll', () => {
         test('llamamos a la función', async () => {
