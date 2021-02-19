@@ -41,7 +41,20 @@ describe('Supplier tests', () => {
             // Assert
             expect(response.error.message).toBe("Supplier validation failed: number: La número de proveedor es necesario")
         })
-        // pasamos dias incorrectos
+        test("pasamos días incorrectos", async () => {
+            // Arrange
+            const supplier = Object();
+            supplier.name = "Test supplier";
+            supplier.number = 12345678;
+            supplier.days = '';
+            supplier.calculateType = "Palets";
+            supplier.minPalets = 26;
+            supplier.maxPalets = 26;
+            // Act
+            const response = await registerFetch(supplier, token);
+            // Assert
+            expect(response.error.message).toBe("Supplier validation failed: number: La número de proveedor es necesario")
+        })
         // pasamos datos correctos
     })
     /* describe('getSupplier', async () => {
