@@ -55,7 +55,7 @@ describe('Supplier tests', () => {
             // Assert
             expect(response.error.message).toBe("Supplier validation failed: days: La cantidad de días que tardan en servir es necesaria")
         })
-        test("pasamos días incorrectos", async () => {
+        test("pasamos datos correctos", async () => {
             // Arrange
             const supplier = Object();
             supplier.name = "Test supplier";
@@ -67,7 +67,7 @@ describe('Supplier tests', () => {
             // Act
             const response = await registerFetch(supplier, token);
             // Assert
-            expect(response.message).toBe("Supplier validation failed: days: La cantidad de días que tardan en servir es necesaria")
+            expect(response.message).toBe("Proveedor guardado correctamente")
         })
     })
     /* describe('getSupplier', async () => {
