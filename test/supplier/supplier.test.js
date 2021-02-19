@@ -151,6 +151,17 @@ describe('Supplier tests', () => {
                 // Assert
                 expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
             })
+            test("solo minKilos", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Kilos";
+                auxSupplier.minKilos = 22;
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                console.log(response)
+                // Assert
+                expect(response.message).toBe("Proveedor modificado correctamente");
+            })
         })
             // modificamos tipo de cálculo franco
             // modificamos tipo de calculo palets
