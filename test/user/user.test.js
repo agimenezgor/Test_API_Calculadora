@@ -4,23 +4,23 @@ describe('User tests', () => {
     describe('Register tests', () => {
         test("Pasamos nombre incorrecto", async() => {
             // Arrange
-            let user1 = Object();
-            user1.name = "";
-            user1.email = "user1@user1.com";
-            user1.password = "12345678"
+            let user = Object();
+            user.name = "";
+            user.email = "user1@user1.com";
+            user.password = "12345678"
             // Act
-            const response = await registerFetch(user1);
+            const response = await registerFetch(user);
             // Assert
             expect(response.error.message).toBe("User validation failed: name: El nombre es necesario")
         })
         test("Pasamos email incorrecto", async () => {
             // Arrange
-            let user1 = Object();
-            user1.name = "User1";
-            user1.email = "";
-            user1.password = "12345678"
+            let user = Object();
+            user.name = "User1";
+            user.email = "";
+            user.password = "12345678"
             // Act
-            const response = await registerFetch(user1);
+            const response = await registerFetch(user);
             // Assert
             expect(response.error.message).toBe("User validation failed: email: El email es necesario")
             
@@ -31,12 +31,19 @@ describe('User tests', () => {
             // Assert
             
         }) */
-        /* test("Pasamos password incorrecto", () => {
+        test("Pasamos password incorrecto", async () => {
             // Arrange
+            let user = Object();
+            user.name = "User1";
+            user.email = "user1@user1.com";
+            user.password = ""
             // Act
+            const response = await registerFetch(user);
             // Assert
+            console.log(response.error.message)
+            expect(response.error.message).toBe("User validation failed: email: El email es necesario")
             
-        }) */
+        })
         /* test("Pasamos datos correctos", () => {
             // Arrange
             // Act
