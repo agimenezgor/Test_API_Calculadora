@@ -7,6 +7,7 @@ const registerFetch = require("./fetchData/registerFetch");
 const getSupplierFetch = require("./fetchData/getSupplierfetch");
 const deleteFetch = require("./fetchData/deleteFetch");
 const updateFetch = require("./fetchData/updateFetch");
+const getAllFetch = require("./fetchData/getAllFetch");
 
 // Proveedor por defecto
 const supplier = Object();
@@ -90,12 +91,6 @@ describe('Supplier tests', () => {
             expect(response.maxPalets).toBe(supplier.maxPalets);
         })
     })
-    /* describe('getAll', () => {
-        // Guardamos varios proveedores
-        // Comprobamos que todos están en la lista
-        // Creamos nuevos proveedores con otro usuario
-        // Volvemos a llamar a la API y comprobamos que los nuevo usuarios creados NO están en la respuesta
-    }) */
     describe('Update', () => {
         test("sin modificar número", async () => {
             // Arrange
@@ -123,7 +118,6 @@ describe('Supplier tests', () => {
             const supplierId = beforeSupplier.user + auxSupplier.number;
             // Act
             const response = await updateFetch(auxSupplier, 12345678, token);
-            console.log(response)
             // Assert
             expect(response.message).toBe("Proveedor modificado correctamente");
             expect(response.supplier.name).toBe(supplier.name);
@@ -135,14 +129,35 @@ describe('Supplier tests', () => {
             let id = response.supplier.user + auxSupplier.number;
             expect(response.supplier.id).toBe(id);
         })
-        // modificamos tipo de calculo palets
-        // modificamos tipo de cálculo kilos
-        // modificamos tipo de cálculo franco
+        /* describe('Modificando tipo de cálculo a kilos', () => {
+            test("sin añadir kilos", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "kilos";
+                // Act
+                const response = await updateFetch(auxSupplier, 12345678, token);
+                console.log(response)
+                // Assert
+                expect(response.message).toBe("Proveedor modificado correctamente");
+            })
+        }) */
+            // modificamos tipo de cálculo franco
+            // modificamos tipo de calculo palets
     })
+    /* describe('getAll', () => {
+        test('llamamos a la función', async () => {
+            const suppliers = await getAllFetch(token);
+            console.log(suppliers);
+        })
+        // Guardamos varios proveedores
+        // Comprobamos que todos están en la lista
+        // Creamos nuevos proveedores con otro usuario
+        // Volvemos a llamar a la API y comprobamos que los nuevo usuarios creados NO están en la respuesta
+    }) */
     describe('Delete', () => {
         test("Borramos el proveedor", async () => {
             // Act
-            const response = await deleteFetch(supplier.number, token);
+            const response = await deleteFetch(87654321, token);
             // Assert
             expect(response.message).toBe("Proveedor borrado correctamente")
         })
@@ -152,5 +167,11 @@ describe('Supplier tests', () => {
             // Assert
             expect(response.message).toBe("There was a problem trying to get the supplier")
         })
+        /* test("borrar proveedor que no existe", async () => {
+            // Act
+            const response = await deleteFetch(supplier.number, token);
+            // Assert
+            expect(response.message).toBe("Proveedor borrado correctamente")
+        }) */
     })
 })

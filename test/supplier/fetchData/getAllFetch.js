@@ -1,8 +1,9 @@
 const fetch = require('node-fetch');
 
-async function deleteFetch(number, token) {          
-    const fetchResponse = await fetch(`http://localhost:3001/suppliers/${number}`, {
-        method: 'DELETE',
+async function getAllFetch(token) {
+    // Fetch             
+    const fetchResponse = await fetch('http://localhost:3001/suppliers', {
+        method: 'GET',
         headers: {
           'Content-Type':'application/json',
           'Authorization': `BEARER ${token}`
@@ -12,4 +13,4 @@ async function deleteFetch(number, token) {
       .then(response => {return response;})
     return fetchResponse;
   }
-  module.exports = deleteFetch;
+  module.exports = getAllFetch;
