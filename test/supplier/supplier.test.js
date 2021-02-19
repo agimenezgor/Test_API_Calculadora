@@ -103,7 +103,6 @@ describe('Supplier tests', () => {
             auxSupplier.name = "Modificado 1";
             // Act
             const response = await updateFetch(auxSupplier, 12345678, token);
-            console.log(response)
             // Assert
             expect(response.message).toBe("Proveedor modificado correctamente");
             expect(response.supplier.name).toBe(auxSupplier.name);
