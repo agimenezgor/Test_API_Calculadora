@@ -3,18 +3,23 @@
 // 3 - Realizamos todos los test 
 // 4 - Finalmente, borramos el usuario
 
-    // 1 - Primero creamos un usuario
-let user1 = Object();
-user1.name = "User1";
-user1.email = "user1@user1.com";
-user1.password = "12345678";
+const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDefaultUser');
+const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
 
-    // 2 - Iniciamos sesión y guardamos el token
 let token = '';
-
     // 3 - Realizamos todos los test 
-describe('Supplier tests', async () => {
-    describe('Register', async () => {
+beforeAll(async () => {
+    token = await initDefaultUser();
+})
+afterAll(async () => {
+    await deleteDefaultUser(token);
+})
+describe('Supplier tests', () => {
+    describe('Register', () => {
+        
+        test("pasamos nombre incorrecto", () => {
+            console.log("token")
+        })
         // pasamos nombre incorrecto
         // pasamos número incorrecto
         // pasamos dias incorrectos

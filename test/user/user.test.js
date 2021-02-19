@@ -60,7 +60,7 @@ describe('User tests', () => {
         })
     })
     
-    describe('Login tests', async () => {
+    describe('Login tests', () => {
         test("Pasamos usuario que no existe", async () => {
             // Arrange
             let user = Object();
@@ -94,7 +94,7 @@ describe('User tests', () => {
         })
     })
 
-    describe("Borramos los datos del usuario", async () =>{
+    describe("Borramos los datos del usuario", () =>{
         test("Borramos el usuario", async () => {
             // Act
             const response = await deleteFetch(user1.email, token);
