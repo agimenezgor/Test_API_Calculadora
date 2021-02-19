@@ -76,7 +76,12 @@ describe('Supplier tests', () => {
             // Act
             const response = await getSupplierFetch(12345678, token);
             // Assert
-            expect(response.message).toBe("Proveedor guardado correctamente")
+            expect(response.name).toBe(supplier.name);
+            expect(parseInt(response.number)).toBe(supplier.number);
+            expect(response.days).toBe(supplier.days);
+            expect(response.calculateType).toBe(supplier.calculateType);
+            expect(response.minPalets).toBe(supplier.minPalets);
+            expect(response.maxPalets).toBe(supplier.maxPalets);
         })
     })
     /* describe('getAll', async () => {
