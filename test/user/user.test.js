@@ -1,9 +1,12 @@
 const registerFetch = require('./fetchData/registerFetch');
 const loginFetch = require('./fetchData/loginFetch');
+const deleteFetch = require('./fetchData/deleteFetch');
 let user1 = Object();
 user1.name = "User1";
 user1.email = "user1@user1.com";
 user1.password = "12345678";
+
+let token = '';
 
 describe('User tests', () => {
     describe('Register tests', () => {
@@ -85,10 +88,25 @@ describe('User tests', () => {
             user.password = user1.password;
             // Act
             const response = await loginFetch(user);
+            token = response.token;
             // Assert
             expect(response.message).toBe("Sesión iniciada correctamente")
         })
     })
 
+    describe("Borramos los datos del usuario", async () =>{
+        test("Borramos el usuario", async () => {
+            // Act
+            const response = await deleteFetch(user1.email, token);
+            console.log(response)
+            // Assert
+            expect(response.message).toBe("El usuario no existe en la base de datos")
+        })
+        /* test("Comprobamos que se ha borrado correctamente", async () => {
+            // Arrange
+            // Act
+            // Assert
+        }) */
+    } )
     // borramos el usuario de la base de datos y comprobamos que se ha borrado correctamente
 })
