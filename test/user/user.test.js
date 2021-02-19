@@ -104,8 +104,8 @@ describe('User tests', () => {
         test("Comprobamos que se ha borrado correctamente", async () => {
             // Arrange
             let user = Object();
-            user.email = "user@user.com";
-            user.password = "12345678";
+            user.email = user1.email;
+            user.password = user1.password;
             // Act
             const response = await loginFetch(user);
             console.log(response)
