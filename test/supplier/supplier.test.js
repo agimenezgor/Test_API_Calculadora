@@ -171,8 +171,49 @@ describe('Supplier tests', () => {
                 expect(response.message).toBe("Proveedor modificado correctamente");
             })
         })
+        describe('Modificando tipo de cálculo a Palets', () => {
+            test("sin añadir palets", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Palets";
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                // Assert
+                expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
+            })
+            test("solo maxPalets", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Palets";
+                auxSupplier.maxPalets = 22;
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                // Assert
+                expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
+            })
+            test("solo minPalets", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Palets";
+                auxSupplier.minPalets = 22;
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                // Assert
+                expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
+            })
+            test("modificado correctamente", async () => {
+                // Arrange
+                let auxSupplier = Object();
+                auxSupplier.calculateType = "Palets";
+                auxSupplier.minPalets = 22;
+                auxSupplier.maxPalets = 22;
+                // Act
+                const response = await updateFetch(auxSupplier, 87654321, token);
+                // Assert
+                expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
+            })
+        })
             // modificamos tipo de cálculo franco
-            // modificamos tipo de calculo palets
     })
     /* describe('getAll', () => {
         test('llamamos a la función', async () => {
