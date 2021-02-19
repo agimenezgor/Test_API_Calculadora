@@ -53,7 +53,7 @@ describe('Supplier tests', () => {
             // Act
             const response = await registerFetch(supplier, token);
             // Assert
-            expect(response.error.message).toBe("Supplier validation failed: number: La número de proveedor es necesario")
+            expect(response.error.message).toBe("Supplier validation failed: days: La cantidad de días que tardan en servir es necesaria")
         })
         // pasamos datos correctos
     })
