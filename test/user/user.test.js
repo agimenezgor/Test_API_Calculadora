@@ -108,10 +108,8 @@ describe('User tests', () => {
             user.password = user1.password;
             // Act
             const response = await loginFetch(user);
-            console.log(response)
             // Assert
-            expect(response.message).toBe("Usuario borrado correctamente")
+            expect(response.message).toBe("El usuario no existe en la base de datos")
         })
     } )
-    // borramos el usuario de la base de datos y comprobamos que se ha borrado correctamente
 })
