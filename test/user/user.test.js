@@ -42,13 +42,13 @@ describe('User tests', () => {
             expect(response.error.message).toBe("User validation failed: password: La contraseña es necesaria")
             
         })
-        test("Pasamos datos correctos", async () => {
+        /* test("Pasamos datos correctos", async () => {
             // Act
             const response = await registerFetch(user1);
             // Assert
             expect(response.message).toBe("Usuario creado correctamente")
             
-        })
+        }) */
         test("Pasamos email que ya existe", async () => {
             // Act
             const response = await registerFetch(user1);
@@ -68,11 +68,16 @@ describe('User tests', () => {
             // Assert
             expect(response.message).toBe("El usuario no existe en la base de datos")
         })
-        /* test("Pasamos contraseña incorrecta", async () => {
+        test("Pasamos contraseña incorrecta", async () => {
             // Arrange
+            let user = Object();
+            user.email = "user1@user1.com";
+            user.password = ""
             // Act
+            const response = await loginFetch(user);
             // Assert
-        }) */
+            expect(response.message).toBe("El usuario no existe en la base de datos")
+        })
         /* test("Pasamos datos correctos", async () => {
             // Arrange
             // Act
