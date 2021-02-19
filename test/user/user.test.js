@@ -40,8 +40,7 @@ describe('User tests', () => {
             // Act
             const response = await registerFetch(user);
             // Assert
-            console.log(response.error.message)
-            expect(response.error.message).toBe("User validation failed: email: El email es necesario")
+            expect(response.error.message).toBe("User validation failed: password: La contraseña es necesaria")
             
         })
         /* test("Pasamos datos correctos", () => {
