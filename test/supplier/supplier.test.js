@@ -168,7 +168,7 @@ describe('Supplier tests', () => {
                 // Act
                 const response = await updateFetch(auxSupplier, 87654321, token);
                 // Assert
-                expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
+                expect(response.message).toBe("Proveedor modificado correctamente");
             })
         })
             // modificamos tipo de cálculo franco
