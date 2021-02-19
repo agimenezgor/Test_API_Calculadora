@@ -99,12 +99,18 @@ describe('Supplier tests', () => {
     describe('Update', () => {
         test("sin modificar número", async () => {
             // Arrange
-            const supplier = Object();
-            supplier.name = "Modificado 1";
+            const auxSupplier = Object();
+            auxSupplier.name = "Modificado 1";
             // Act
-            const response = await updateFetch(supplier, 12345678, token);
+            const response = await updateFetch(auxSupplier, 12345678, token);
             // Assert
-            expect(response.error.message).toBe("Supplier validation failed: name: El nombre es necesario")
+            expect(response.message).toBe("Proveedor modificado correctamente");
+            expect(response.supplier.name).toBe(auxSupplier.name);
+            expect(parseInt(response.supplier.number)).toBe(supplier.number);
+            expect(response.supplier.days).toBe(supplier.days);
+            expect(response.supplier.calculateType).toBe(supplier.calculateType);
+            expect(response.supplier.minPalets).toBe(supplier.minPalets);
+            expect(response.supplier.maxPalets).toBe(supplier.maxPalets);
         })
         // modificamos proveedor modificando número
         // modificamos tipo de calculo palets
