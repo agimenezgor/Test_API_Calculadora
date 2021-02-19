@@ -17,6 +17,20 @@ const supplier = Object();
             supplier.calculateType = "Palets";
             supplier.minPalets = 26;
             supplier.maxPalets = 26;
+const supplier2 = Object();
+            supplier2.name = "Test supplier 2";
+            supplier2.number = 12345677;
+            supplier2.days = 3;
+            supplier2.calculateType = "Palets";
+            supplier2.minPalets = 26;
+            supplier2.maxPalets = 26;
+const supplier3 = Object();
+            supplier3.name = "Test supplier 3";
+            supplier3.number = 12345679;
+            supplier3.days = 3;
+            supplier3.calculateType = "Palets";
+            supplier3.minPalets = 26;
+            supplier3.maxPalets = 26;
 
 // Primero creamos un usuario y guardamos el token.
 let token = '';
@@ -221,30 +235,41 @@ describe('Supplier tests', () => {
                 // Act
                 const response = await updateFetch(auxSupplier, 87654321, token);
                 // Assert
-                expect(response.message).toBe("Es necesario modificar también las variables minPalets y maxPalets");
+                expect(response.message).toBe("Es necesario modificar también la variable money");
             })
             test("modificado correctamente", async () => {
                 // Arrange
                 let auxSupplier = Object();
                 auxSupplier.calculateType = "Franco";
-                auxSupplier.money = 22;
+                auxSupplier.money= 22;
                 // Act
                 const response = await updateFetch(auxSupplier, 87654321, token);
                 // Assert
-                expect(response.message).toBe("Es necesario modificar también las variables minPalets y maxPalets");
+                expect(response.message).toBe("Proveedor modificado correctamente");
             })
         })
     })
-    /* describe('getAll', () => {
-        test('llamamos a la función', async () => {
+    describe('getAll', () => {
+        test('nuevos proveedores', async () => {
+            // Act
+            // Guardamos dos proveedores nuevos
+            const response2 = await registerFetch(supplier2, token);
+            expect(response2.message).toBe("Proveedor guardado correctamente")
+            const response3 = await registerFetch(supplier3, token);
+            expect(response3.message).toBe("Proveedor guardado correctamente")
+            
+            // Comprobamos que todos están en la lista
             const suppliers = await getAllFetch(token);
-            console.log(suppliers);
+            
+            // Assert
+            expect(suppliers[0].name).toBe("Test supplier");
+            expect(suppliers[1].name).toBe("Test supplier 3");
+            expect(suppliers[2].name).toBe("Test supplier 2");
         })
-        // Guardamos varios proveedores
-        // Comprobamos que todos están en la lista
+        
         // Creamos nuevos proveedores con otro usuario
         // Volvemos a llamar a la API y comprobamos que los nuevo usuarios creados NO están en la respuesta
-    }) */
+    })
     describe('Delete', () => {
         test("Borramos el proveedor", async () => {
             // Act
