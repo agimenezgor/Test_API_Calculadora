@@ -76,7 +76,7 @@ describe('Supplier tests', () => {
             expect(response.message).toBe("Proveedor guardado correctamente")
         })
     })
-    describe('getSupplier', async () => {
+    describe('getSupplier', () => {
         test("comprobamos que se ha guardado el proveedor", async () => {
             // Act
             const response = await getSupplierFetch(12345678, token);
@@ -102,12 +102,12 @@ describe('Supplier tests', () => {
         // modificamos tipo de cálculo kilos
         // modificamos tipo de cálculo franco
     }) */
-    describe('Delete', async () => {
+    describe('Delete', () => {
         test("Borramos el proveedor", async () => {
             // Act
             const response = await deleteFetch(supplier.number, token);
             // Assert
-            expect(response.message).toBe("Usuario borrado correctamente")
+            expect(response.message).toBe("Proveedor borrado correctamente")
         })
     })
 })
