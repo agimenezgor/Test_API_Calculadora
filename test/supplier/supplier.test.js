@@ -2,14 +2,6 @@ const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDef
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
 const registerFetch = require("./fetchData/registerFetch");
 
-let defaultSupplier = Object();
-            defaultSupplier.name = "Default supplier";
-            defaultSupplier.number = 12345678;
-            defaultSupplier.days = 3;
-            defaultSupplier.calculateType = "Palets";
-            defaultSupplier.minPalets = 26;
-            defaultSupplier.maxPalets = 26;
-
 // Primero creamos un usuario y guardamos el token.
 let token = '';
 beforeAll(async () => {
@@ -21,18 +13,34 @@ afterAll(async () => {
 })
 describe('Supplier tests', () => {
     describe('Register', () => {
-        
         test("pasamos nombre incorrecto", async () => {
             // Arrange
-            let supplier = defaultSupplier;
+            const supplier = Object();
             supplier.name = "";
+            supplier.number = 12345678;
+            supplier.days = 3;
+            supplier.calculateType = "Palets";
+            supplier.minPalets = 26;
+            supplier.maxPalets = 26;
             // Act
             const response = await registerFetch(supplier, token);
             // Assert
             expect(response.error.message).toBe("Supplier validation failed: name: El nombre es necesario")
         })
-        // pasamos nombre incorrecto
-        // pasamos número incorrecto
+        test("pasamos número incorrecto", async () => {
+            // Arrange
+            const supplier = Object();
+            supplier.name = "Test supplier";
+            supplier.number = '';
+            supplier.days = 3;
+            supplier.calculateType = "Palets";
+            supplier.minPalets = 26;
+            supplier.maxPalets = 26;
+            // Act
+            const response = await registerFetch(supplier, token);
+            // Assert
+            expect(response.error.message).toBe("Supplier validation failed: name: El nombre es necesario")
+        })
         // pasamos dias incorrectos
         // pasamos datos correctos
     })
