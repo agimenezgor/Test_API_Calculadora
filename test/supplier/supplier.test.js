@@ -171,7 +171,7 @@ describe('Supplier tests', () => {
             // Act
             const response = await deleteFetch(supplier.number, token);
             // Assert
-            expect(response.message).toBe("Proveedor borrado correctamente")
+            expect(response.message).toBe("El proveedor no existe en la base de datos")
         })
     })
 })
