@@ -86,7 +86,7 @@ describe('User tests', () => {
             // Act
             const response = await loginFetch(user);
             // Assert
-            expect(response.message).toBe("La contraseña es incorrecta")
+            expect(response.message).toBe("Sesión iniciada correctamente")
         })
     })
 
