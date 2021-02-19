@@ -28,9 +28,8 @@ describe('Supplier tests', () => {
             supplier.name = "";
             // Act
             const response = await registerFetch(supplier, token);
-            console.log(response.error.message)
             // Assert
-            expect(response.error.message).toBe("Error")
+            expect(response.error.message).toBe("Supplier validation failed: name: El nombre es necesario")
         })
         // pasamos nombre incorrecto
         // pasamos número incorrecto
