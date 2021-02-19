@@ -263,8 +263,8 @@ describe('Supplier tests', () => {
             
             // Assert
             expect(suppliers[0].name).toBe("Test supplier");
-            expect(suppliers[1].name).toBe("Test supplier 3");
-            expect(suppliers[2].name).toBe("Test supplier 2");
+            expect(suppliers[1].name).toBe("Test supplier 2");
+            expect(suppliers[2].name).toBe("Test supplier 3");
         })
         
         // Creamos nuevos proveedores con otro usuario
@@ -274,8 +274,13 @@ describe('Supplier tests', () => {
         test("Borramos el proveedor", async () => {
             // Act
             const response = await deleteFetch(87654321, token);
+            const response2 = await deleteFetch(supplier2.number, token);
+            const response3 = await deleteFetch(supplier3.number, token);
+
             // Assert
-            expect(response.message).toBe("Proveedor borrado correctamente")
+            expect(response.message).toBe("Proveedor borrado correctamente");
+            expect(response2.message).toBe("Proveedor borrado correctamente");
+            expect(response3.message).toBe("Proveedor borrado correctamente");
         })
         test("Comprobamos que se ha borrado correctamente", async () => {
             // Act
