@@ -6,6 +6,7 @@ const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser'
 const registerFetch = require("./fetchData/registerFetch");
 const getSupplierFetch = require("./fetchData/getSupplierfetch");
 const deleteFetch = require("./fetchData/deleteFetch");
+const updateFetch = require("./fetchData/updateFetch");
 
 // Proveedor por defecto
 const supplier = Object();
@@ -89,19 +90,27 @@ describe('Supplier tests', () => {
             expect(response.maxPalets).toBe(supplier.maxPalets);
         })
     })
-    /* describe('getAll', async () => {
+    /* describe('getAll', () => {
         // Guardamos varios proveedores
         // Comprobamos que todos están en la lista
         // Creamos nuevos proveedores con otro usuario
         // Volvemos a llamar a la API y comprobamos que los nuevo usuarios creados NO están en la respuesta
     }) */
-    /* describe('Update', async () => {
-        // modificamos proveedor sin modificar número
+    describe('Update', () => {
+        test("sin modificar número", async () => {
+            // Arrange
+            const supplier = Object();
+            supplier.name = "Modificado 1";
+            // Act
+            const response = await updateFetch(supplier, 12345678, token);
+            // Assert
+            expect(response.error.message).toBe("Supplier validation failed: name: El nombre es necesario")
+        })
         // modificamos proveedor modificando número
         // modificamos tipo de calculo palets
         // modificamos tipo de cálculo kilos
         // modificamos tipo de cálculo franco
-    }) */
+    })
     describe('Delete', () => {
         test("Borramos el proveedor", async () => {
             // Act
@@ -112,7 +121,6 @@ describe('Supplier tests', () => {
         test("Comprobamos que se ha borrado correctamente", async () => {
             // Act
             const response = await getSupplierFetch(12345678, token);
-            console.log(response)
             // Assert
             expect(response.message).toBe("There was a problem trying to get the supplier")
         })
