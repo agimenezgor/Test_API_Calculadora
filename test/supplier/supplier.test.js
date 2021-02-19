@@ -136,7 +136,6 @@ describe('Supplier tests', () => {
                 auxSupplier.calculateType = "Kilos";
                 // Act
                 const response = await updateFetch(auxSupplier, 87654321, token);
-                console.log(response)
                 // Assert
                 expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
             })
@@ -147,7 +146,6 @@ describe('Supplier tests', () => {
                 auxSupplier.maxKilos = 22;
                 // Act
                 const response = await updateFetch(auxSupplier, 87654321, token);
-                console.log(response)
                 // Assert
                 expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
             })
@@ -158,9 +156,8 @@ describe('Supplier tests', () => {
                 auxSupplier.minKilos = 22;
                 // Act
                 const response = await updateFetch(auxSupplier, 87654321, token);
-                console.log(response)
                 // Assert
-                expect(response.message).toBe("Proveedor modificado correctamente");
+                expect(response.message).toBe("Es necesario modificar también las variables minKilos y maxKilos");
             })
         })
             // modificamos tipo de cálculo franco
