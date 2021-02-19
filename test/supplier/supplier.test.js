@@ -34,12 +34,14 @@ const supplier3 = Object();
 
 // Primero creamos un usuario y guardamos el token.
 let token = '';
-beforeAll(async () => {
+beforeAll(async (done) => {
     token = await initDefaultUser();
+    done()
 })
 // Finalmente, borramos el usuario
-afterAll(async () => {
+afterAll(async (done) => {
     await deleteDefaultUser(token);
+    done()
 })
 describe('Supplier tests', () => {
     describe('Register', () => {
@@ -266,9 +268,6 @@ describe('Supplier tests', () => {
             expect(suppliers[1].name).toBe("Test supplier 2");
             expect(suppliers[2].name).toBe("Test supplier 3");
         })
-        
-        // Creamos nuevos proveedores con otro usuario
-        // Volvemos a llamar a la API y comprobamos que los nuevo usuarios creados NO están en la respuesta
     })
     describe('Delete', () => {
         test("Borramos el proveedor", async () => {
