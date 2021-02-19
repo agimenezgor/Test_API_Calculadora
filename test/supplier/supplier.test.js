@@ -114,7 +114,7 @@ describe('Supplier tests', () => {
             const response = await getSupplierFetch(12345678, token);
             console.log(response)
             // Assert
-            expect(response.message).toBe("El usuario no existe en la base de datos")
+            expect(response.message).toBe("There was a problem trying to get the supplier")
         })
     })
 })
