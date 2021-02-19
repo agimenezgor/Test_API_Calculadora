@@ -1,7 +1,16 @@
 const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDefaultUser');
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
 const registerFetch = require("./fetchData/registerFetch");
-
+const getSupplierFetch = require("./fetchData/getSupplierfetch");
+// Proveedor por defecto
+const supplier = Object();
+            supplier.name = "Test supplier";
+            supplier.number = 12345678;
+            supplier.days = 3;
+            supplier.calculateType = "Palets";
+            supplier.minPalets = 26;
+            supplier.maxPalets = 26;
+            
 // Primero creamos un usuario y guardamos el token.
 let token = '';
 beforeAll(async () => {
@@ -56,23 +65,21 @@ describe('Supplier tests', () => {
             expect(response.error.message).toBe("Supplier validation failed: days: La cantidad de días que tardan en servir es necesaria")
         })
         test("pasamos datos correctos", async () => {
-            // Arrange
-            const supplier = Object();
-            supplier.name = "Test supplier";
-            supplier.number = 12345678;
-            supplier.days = 3;
-            supplier.calculateType = "Palets";
-            supplier.minPalets = 26;
-            supplier.maxPalets = 26;
             // Act
             const response = await registerFetch(supplier, token);
             // Assert
             expect(response.message).toBe("Proveedor guardado correctamente")
         })
     })
-    /* describe('getSupplier', async () => {
-        // comprobamos que devuelve el proveedor creado
-    }) */
+    describe('getSupplier', async () => {
+        /* test("comprobamos que se ha guardado el proveedor", async () => {
+            // Act
+            const response = await getSupplierFetch(12345678, token);
+            console.log(response)
+            // Assert
+            expect(response.message).toBe("Proveedor guardado correctamente")
+        }) */
+    })
     /* describe('getAll', async () => {
         // Guardamos varios proveedores
         // Comprobamos que todos están en la lista
