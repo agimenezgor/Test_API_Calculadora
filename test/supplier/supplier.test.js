@@ -109,7 +109,12 @@ describe('Supplier tests', () => {
             // Assert
             expect(response.message).toBe("Proveedor borrado correctamente")
         })
+        test("Comprobamos que se ha borrado correctamente", async () => {
+            // Act
+            const response = await getSupplierFetch(12345678, token);
+            console.log(response)
+            // Assert
+            expect(response.message).toBe("El usuario no existe en la base de datos")
+        })
     })
 })
-
-    // 4 - Finalmente, borramos el usuario
