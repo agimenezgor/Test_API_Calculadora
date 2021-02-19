@@ -3,7 +3,7 @@ const loginFetch = require('./fetchData/loginFetch');
 let user1 = Object();
 user1.name = "User1";
 user1.email = "user1@user1.com";
-user1.password = "12345678"
+user1.password = "12345678";
 
 describe('User tests', () => {
     describe('Register tests', () => {
@@ -12,7 +12,7 @@ describe('User tests', () => {
             let user = Object();
             user.name = "";
             user.email = "user@user.com";
-            user.password = "12345678"
+            user.password = "12345678";
             // Act
             const response = await registerFetch(user);
             // Assert
@@ -23,7 +23,7 @@ describe('User tests', () => {
             let user = Object();
             user.name = "User";
             user.email = "";
-            user.password = "12345678"
+            user.password = "12345678";
             // Act
             const response = await registerFetch(user);
             // Assert
@@ -35,7 +35,7 @@ describe('User tests', () => {
             let user = Object();
             user.name = "User";
             user.email = "user@user.com";
-            user.password = ""
+            user.password = "";
             // Act
             const response = await registerFetch(user);
             // Assert
@@ -62,7 +62,7 @@ describe('User tests', () => {
             // Arrange
             let user = Object();
             user.email = "user@user.com";
-            user.password = "12345678"
+            user.password = "12345678";
             // Act
             const response = await loginFetch(user);
             // Assert
@@ -72,17 +72,22 @@ describe('User tests', () => {
             // Arrange
             let user = Object();
             user.email = "user1@user1.com";
-            user.password = ""
+            user.password = "";
             // Act
             const response = await loginFetch(user);
             // Assert
-            expect(response.message).toBe("El usuario no existe en la base de datos")
+            expect(response.message).toBe("La contraseña es incorrecta")
         })
-        /* test("Pasamos datos correctos", async () => {
+        test("Pasamos datos correctos", async () => {
             // Arrange
+            let user = Object();
+            user.email = user1.email;
+            user.password = user1.password;
             // Act
+            const response = await loginFetch(user);
             // Assert
-        }) */
+            expect(response.message).toBe("La contraseña es incorrecta")
+        })
     })
 
     // borramos el usuario de la base de datos y comprobamos que se ha borrado correctamente
