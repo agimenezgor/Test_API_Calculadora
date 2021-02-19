@@ -101,11 +101,17 @@ describe('User tests', () => {
             // Assert
             expect(response.message).toBe("Usuario borrado correctamente")
         })
-        /* test("Comprobamos que se ha borrado correctamente", async () => {
+        test("Comprobamos que se ha borrado correctamente", async () => {
             // Arrange
+            let user = Object();
+            user.email = "user@user.com";
+            user.password = "12345678";
             // Act
+            const response = await loginFetch(user);
+            console.log(response)
             // Assert
-        }) */
+            expect(response.message).toBe("Usuario borrado correctamente")
+        })
     } )
     // borramos el usuario de la base de datos y comprobamos que se ha borrado correctamente
 })
