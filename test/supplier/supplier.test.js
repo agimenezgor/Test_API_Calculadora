@@ -10,7 +10,7 @@ const supplier = Object();
             supplier.calculateType = "Palets";
             supplier.minPalets = 26;
             supplier.maxPalets = 26;
-            
+
 // Primero creamos un usuario y guardamos el token.
 let token = '';
 beforeAll(async () => {
@@ -72,13 +72,12 @@ describe('Supplier tests', () => {
         })
     })
     describe('getSupplier', async () => {
-        /* test("comprobamos que se ha guardado el proveedor", async () => {
+        test("comprobamos que se ha guardado el proveedor", async () => {
             // Act
             const response = await getSupplierFetch(12345678, token);
-            console.log(response)
             // Assert
             expect(response.message).toBe("Proveedor guardado correctamente")
-        }) */
+        })
     })
     /* describe('getAll', async () => {
         // Guardamos varios proveedores
