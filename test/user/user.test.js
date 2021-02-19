@@ -13,12 +13,18 @@ describe('User tests', () => {
             // Assert
             expect(response.error.message).toBe("User validation failed: name: El nombre es necesario")
         })
-        /* test("Pasamos email incorrecto", () => {
+        test("Pasamos email incorrecto", async () => {
             // Arrange
+            let user1 = Object();
+            user1.name = "User1";
+            user1.email = "";
+            user1.password = "12345678"
             // Act
+            const response = await registerFetch(user1);
             // Assert
+            expect(response.error.message).toBe("User validation failed: email: El email es necesario")
             
-        }) */
+        })
         /* test("Pasamos email que ya existe", () => {
             // Arrange
             // Act
