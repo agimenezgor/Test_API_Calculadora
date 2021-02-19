@@ -1,7 +1,12 @@
+// funciones de crear usuario y borrarlo
 const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDefaultUser');
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
+
+// fetch del proveedor
 const registerFetch = require("./fetchData/registerFetch");
 const getSupplierFetch = require("./fetchData/getSupplierfetch");
+const deleteFetch = require("./fetchData/deleteFetch");
+
 // Proveedor por defecto
 const supplier = Object();
             supplier.name = "Test supplier";
@@ -97,10 +102,14 @@ describe('Supplier tests', () => {
         // modificamos tipo de cálculo kilos
         // modificamos tipo de cálculo franco
     }) */
-    /* describe('Delete', async () => {
-        // Borramos el proveedor
-        // comprobamos que no existe en la base de datos
-    }) */
+    describe('Delete', async () => {
+        test("Borramos el proveedor", async () => {
+            // Act
+            const response = await deleteFetch(supplier.number, token);
+            // Assert
+            expect(response.message).toBe("Usuario borrado correctamente")
+        })
+    })
 })
 
     // 4 - Finalmente, borramos el usuario
