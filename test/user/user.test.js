@@ -66,7 +66,7 @@ describe('User tests', () => {
             // Act
             const response = await loginFetch(user);
             // Assert
-            expect(response.message).toBe("Sesión iniciada correctamente")
+            expect(response.message).toBe("El usuario no existe en la base de datos")
         })
         /* test("Pasamos contraseña incorrecta", async () => {
             // Arrange
