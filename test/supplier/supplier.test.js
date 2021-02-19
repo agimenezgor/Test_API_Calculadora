@@ -167,11 +167,11 @@ describe('Supplier tests', () => {
             // Assert
             expect(response.message).toBe("There was a problem trying to get the supplier")
         })
-        /* test("borrar proveedor que no existe", async () => {
+        test("borrar proveedor que no existe", async () => {
             // Act
             const response = await deleteFetch(supplier.number, token);
             // Assert
             expect(response.message).toBe("Proveedor borrado correctamente")
-        }) */
+        })
     })
 })
