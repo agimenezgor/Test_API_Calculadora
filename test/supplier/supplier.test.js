@@ -129,18 +129,18 @@ describe('Supplier tests', () => {
             let id = response.supplier.user + auxSupplier.number;
             expect(response.supplier.id).toBe(id);
         })
-        /* describe('Modificando tipo de cálculo a kilos', () => {
+        describe('Modificando tipo de cálculo a kilos', () => {
             test("sin añadir kilos", async () => {
                 // Arrange
                 let auxSupplier = Object();
-                auxSupplier.calculateType = "kilos";
+                auxSupplier.calculateType = "Kilos";
                 // Act
-                const response = await updateFetch(auxSupplier, 12345678, token);
+                const response = await updateFetch(auxSupplier, 87654321, token);
                 console.log(response)
                 // Assert
                 expect(response.message).toBe("Proveedor modificado correctamente");
             })
-        }) */
+        })
             // modificamos tipo de cálculo franco
             // modificamos tipo de calculo palets
     })
