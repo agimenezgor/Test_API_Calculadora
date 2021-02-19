@@ -52,7 +52,7 @@ describe('User tests', () => {
             // Act
             const response = await registerFetch(user1);
             // Assert
-            expect(response.message).toBe("Usuario creado correctamente")
+            expect(response.error.code).toBe(11000)
         })
     })
     
