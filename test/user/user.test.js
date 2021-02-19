@@ -48,12 +48,12 @@ describe('User tests', () => {
             expect(response.message).toBe("Usuario creado correctamente")
             
         })
-        /* test("Pasamos email que ya existe", () => {
-            // Arrange
+        test("Pasamos email que ya existe", async () => {
             // Act
+            const response = await registerFetch(user1);
             // Assert
-            
-        }) */
+            expect(response.message).toBe("Usuario creado correctamente")
+        })
     })
     
     /* describe('Login tests', () => {
