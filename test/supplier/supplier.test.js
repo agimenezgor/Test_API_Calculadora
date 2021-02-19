@@ -132,7 +132,7 @@ describe('Supplier tests', () => {
             expect(response.supplier.calculateType).toBe(supplier.calculateType);
             expect(response.supplier.minPalets).toBe(supplier.minPalets);
             expect(response.supplier.maxPalets).toBe(supplier.maxPalets);
-            let id = response.supplier.user + supplier.number;
+            let id = response.supplier.user + auxSupplier.number;
             expect(response.supplier.id).toBe(id);
         })
         // modificamos tipo de calculo palets
