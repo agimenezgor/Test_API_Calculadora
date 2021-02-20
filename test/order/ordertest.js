@@ -3,16 +3,16 @@ const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDef
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
 
 // importamos servicios de proveedor
-const supplierRegisterFetch = require("../supplier/fetchData/registerFetch");
-const supplierDeleteFetch = require("../supplier/fetchData/deleteFetch");
+const supplierRegisterFetch = require("../../services/fetchDataServices/supplierFetch/registerFetch");
+const supplierDeleteFetch = require("../../services/fetchDataServices/supplierFetch/deleteFetch");
 
 // importamos servicios de referencias
-const registerFetch = require("./fetchData/registerFetch");
-const deleteFetch = require("./fetchData/deleteFetch");
-const getAllFetch = require("./fetchData/getAllFetch");
+const registerFetch = require("../../services/fetchDataServices/userFetch/registerFetch");
+const deleteFetch = require("../../services/fetchDataServices/userFetch/deleteFetch");
+const getAllFetch = require("../../services/fetchDataServices/userFetch/getAllFetch");
 
 // importamos servicios de pedidos
-const orderFetch = require("./fetchData/orderFetch");
+const orderFetch = require("../../services/fetchDataServices/orderFetch/orderFetch");
 
 // Usuario por defecto
 let user = Object();
