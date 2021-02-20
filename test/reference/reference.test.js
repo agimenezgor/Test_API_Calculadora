@@ -185,17 +185,17 @@ describe('Reference tests', () => {
             expect(response2.message).toBe("Referencia borrada correctamente");
             expect(response3.message).toBe("Referencia borrada correctamente");
         })
-        test("Comprobamos que se ha borrado correctamente", async () => {
+        test("Comprobamos que se han borrado correctamente", async () => {
             // Act
             const response = await getReferenceFetch(supplier.number, 12345678, token);
             // Assert
             expect(response.message).toBe("La referencia no existe en la base de datos")
         })
-        /* test("borrar proveedor que no existe", async () => {
+        test("borrar referencia que no existe", async () => {
             // Act
-            const response = await deleteFetch(defualtReference.number, token);
+            const response = await deleteFetch(supplier.number, defaultReference.number, token);
             // Assert
             expect(response.message).toBe("El proveedor no existe en la base de datos")
-        })*/
+        })
     })
 })
