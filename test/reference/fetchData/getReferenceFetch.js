@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 
-async function getReferenceFetch(supplier, number, token) {
+async function getReferenceFetch(supplierNumber, referenceNumber, token) {
     // Fetch             
-    const fetchResponse = await fetch(`http://localhost:3001/references/${supplier}/${number}`, {
+    const fetchResponse = await fetch(`http://localhost:3001/references/${supplierNumber}/${referenceNumber}`, {
         method: 'GET',
         headers: {
           'Content-Type':'application/json',

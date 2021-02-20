@@ -112,7 +112,6 @@ describe('Reference tests', () => {
             // Act
             const response = await getReferenceFetch(supplier.number, 12345678, token);
             // Assert
-            debugger;
             expect(response.name).toBe(defaultReference.name);
             expect(parseInt(response.number)).toBe(defaultReference.number);
             expect(response.conditioning).toBe(defaultReference.conditioning);
@@ -142,8 +141,6 @@ describe('Reference tests', () => {
             const auxReference = Object();
             auxReference.name = defaultReference.name;
             auxReference.number = 87654321;
-            const beforeReference = await getReferenceFetch(12345678, token);
-            const referenceId = beforeReference.supplier + auxReference.number;
             // Act
             const response = await updateFetch(auxReference, 12345678, supplier.number, token);
             // Assert
@@ -185,15 +182,15 @@ describe('Reference tests', () => {
 
             // Assert
             expect(response.message).toBe("Referencia borrada correctamente");
-            expect(response2.message).toBe("Proveedor borrado correctamente");
-            expect(response3.message).toBe("Proveedor borrado correctamente");
+            expect(response2.message).toBe("Referencia borrada correctamente");
+            expect(response3.message).toBe("Referencia borrada correctamente");
         })
-        /* test("Comprobamos que se ha borrado correctamente", async () => {
+        test("Comprobamos que se ha borrado correctamente", async () => {
             // Act
-            const response = await getReferenceFetch(12345678, token);
+            const response = await getReferenceFetch(supplier.number, 12345678, token);
             // Assert
             expect(response.message).toBe("There was a problem trying to get the supplier")
-        }) */
+        })
         /* test("borrar proveedor que no existe", async () => {
             // Act
             const response = await deleteFetch(defualtReference.number, token);
