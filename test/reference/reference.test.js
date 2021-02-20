@@ -115,14 +115,13 @@ describe('Reference tests', () => {
             auxReference.name = "Modificado 1";
             // Act
             const response = await updateFetch(auxReference, 12345678, supplier.number, token);
-            console.log(response)
             // Assert
             expect(response.message).toBe("Referencia actualizada correctamente");
-            expect(response.reference.name).toBe(defaultReference.name);
-            expect(parseInt(response.supplier.number)).toBe(defaultReference.number);
+            expect(response.reference.name).toBe(auxReference.name);
+            expect(parseInt(response.reference.number)).toBe(defaultReference.number);
             expect(response.reference.conditioning).toBe(defaultReference.conditioning);
             expect(response.reference.facing).toBe(defaultReference.facing);
-            expect(response.reference.sales).toBe(0);
+            expect(response.reference.sales).toBe(defaultReference.sales);
             let id = response.reference.supplier + response.reference.number;
             expect(response.reference.id).toBe(id);
         })
