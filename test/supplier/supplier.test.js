@@ -39,9 +39,8 @@ beforeAll(async (done) => {
     done()
 })
 // Finalmente, borramos el usuario
-afterAll(async (done) => {
+afterAll(async () => {
     await deleteDefaultUser(token);
-    done()
 })
 describe('Supplier tests', () => {
     describe('Register', () => {
