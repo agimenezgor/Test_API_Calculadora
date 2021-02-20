@@ -63,7 +63,7 @@ describe('Reference tests', () => {
             // Assert
             expect(response.error.message).toBe("Reference validation failed: number: La número de referencia es necesario")
         })
-        /* test("pasamos condicionante incorrecto", async () => {
+        test("pasamos condicionante incorrecto", async () => {
             // Arrange
             const reference = Object();
             reference.name = "Test reference";
@@ -72,13 +72,13 @@ describe('Reference tests', () => {
             reference.facing = 2;
             reference.sales = 26;
             // Act
-            const response = await registerFetch(reference, token);
+            const response = await registerFetch(reference, supplierInit.number, token);
             // Assert
             expect(response.error.message).toBe("Supplier validation failed: days: La cantidad de días que tardan en servir es necesaria")
-        }) */
+        })
         /* test("pasamos datos correctos", async () => {
             // Act
-            const response = await registerFetch(defualtReference, token);
+            const response = await registerFetch(defualtReference, supplierInit.number, token);
             // Assert
             expect(response.message).toBe("Proveedor guardado correctamente")
         }) */
