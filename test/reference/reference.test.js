@@ -195,7 +195,7 @@ describe('Reference tests', () => {
             // Act
             const response = await deleteFetch(supplier.number, defaultReference.number, token);
             // Assert
-            expect(response.message).toBe("El proveedor no existe en la base de datos")
+            expect(response.message).toBe("Referencia no encontrada")
         })
     })
 })
