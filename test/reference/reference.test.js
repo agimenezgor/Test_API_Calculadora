@@ -7,7 +7,7 @@ const registerFetch = require("./fetchData/registerFetch");
 const getReferenceFetch = require("./fetchData/getReferencefetch");
 //const deleteFetch = require("./fetchData/deleteFetch");
 const updateFetch = require("./fetchData/updateFetch");
-//const getAllFetch = require("./fetchData/getAllFetch");
+const getAllFetch = require("./fetchData/getAllFetch");
 
 // fetch del proveedor
 const supplierRegisterFetch = require("../supplier/fetchData/registerFetch");
@@ -29,6 +29,18 @@ const defaultReference = Object();
             defaultReference.conditioning = 48;
             defaultReference.facing = 2;
             defaultReference.sales = 100;
+const defaultReference2 = Object();
+            defaultReference2.name = "Test reference 2";
+            defaultReference2.number = 12345677;
+            defaultReference2.conditioning = 48;
+            defaultReference2.facing = 2;
+            defaultReference2.sales = 100;
+const defaultReference3 = Object();
+            defaultReference3.name = "Test reference 3";
+            defaultReference3.number = 12345679;
+            defaultReference3.conditioning = 48;
+            defaultReference3.facing = 2;
+            defaultReference3.sales = 100;
 
 // Primero creamos un usuario y guardamos el token.
 async function before(){
@@ -146,24 +158,24 @@ describe('Reference tests', () => {
         })
     
     })
-    /* describe('getAll', () => {
+    describe('getAll', () => {
         test('nuevos proveedores', async () => {
             // Act
             // Guardamos dos proveedores nuevos
-            const response2 = await registerFetch(defualtReference2, token);
-            expect(response2.message).toBe("Proveedor guardado correctamente")
-            const response3 = await registerFetch(defualtReference3, token);
-            expect(response3.message).toBe("Proveedor guardado correctamente")
+            const response2 = await registerFetch(defaultReference2, supplier.number, token);
+            expect(response2.message).toBe("Referencia guardada correctamente")
+            const response3 = await registerFetch(defaultReference3, supplier.number, token);
+            expect(response3.message).toBe("Referencia guardada correctamente")
             
             // Comprobamos que todos están en la lista
-            const references = await getAllFetch(token);
+            const references = await getAllFetch(supplier.number, token);
             
             // Assert
-            expect(references[0].name).toBe("Test supplier");
-            expect(references[1].name).toBe("Test supplier 2");
+            expect(references[0].name).toBe("Test reference");
+            expect(references[1].name).toBe("Test reference 2");
             expect(references[2].name).toBe("Test supplier 3");
         })
-    }) */
+    })
     /* describe('Delete', () => {
         /* test("Borramos el proveedor", async () => {
             // Act
