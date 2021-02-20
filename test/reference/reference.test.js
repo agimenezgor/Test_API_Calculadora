@@ -189,7 +189,7 @@ describe('Reference tests', () => {
             // Act
             const response = await getReferenceFetch(supplier.number, 12345678, token);
             // Assert
-            expect(response.message).toBe("There was a problem trying to get the supplier")
+            expect(response.message).toBe("La referencia no existe en la base de datos")
         })
         /* test("borrar proveedor que no existe", async () => {
             // Act
