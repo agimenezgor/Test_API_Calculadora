@@ -88,7 +88,7 @@ describe('Reference tests', () => {
             // Act
             const response = await registerFetch(defaultReference, supplierInit.number, token);
             // Assert
-            expect(response.message).toBe("Proveedor guardado correctamente")
+            expect(response.message).toBe("Referencia guardada correctamente")
         })
     })
     /* describe('getSupplier', () => {
