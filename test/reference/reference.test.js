@@ -3,15 +3,15 @@ const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDef
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
 
 // fetch de la referencia
-const registerFetch = require("./fetchData/registerFetch");
-const getReferenceFetch = require("./fetchData/getReferencefetch");
-const deleteFetch = require("./fetchData/deleteFetch");
-const updateFetch = require("./fetchData/updateFetch");
-const getAllFetch = require("./fetchData/getAllFetch");
+const registerFetch = require("../../services/fetchDataServices/referenceFetch/registerFetch");
+const getReferenceFetch = require("../../services/fetchDataServices/referenceFetch/getReferenceFetch");
+const deleteFetch = require("../../services/fetchDataServices/referenceFetch/deleteFetch");
+const updateFetch = require("../../services/fetchDataServices/referenceFetch/updateFetch");
+const getAllFetch = require("../../services/fetchDataServices/referenceFetch/getAllFetch");
 
 // fetch del proveedor
-const supplierRegisterFetch = require("../supplier/fetchData/registerFetch");
-const supplierDeleteFetch = require("../supplier/fetchData/deleteFetch");
+const supplierRegisterFetch = require("../../services/fetchDataServices/supplierFetch/registerFetch");
+const supplierDeleteFetch = require("../../services/fetchDataServices/supplierFetch/deleteFetch");
 
 // Proveedor por defecto
 const supplier = Object();

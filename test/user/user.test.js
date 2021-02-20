@@ -1,6 +1,6 @@
-const registerFetch = require('./fetchData/registerFetch');
-const loginFetch = require('./fetchData/loginFetch');
-const deleteFetch = require('./fetchData/deleteFetch');
+const registerFetch = require('../../services/fetchDataServices/userFetch/registerFetch');
+const loginFetch = require('../../services/fetchDataServices/userFetch/loginFetch');
+const deleteFetch = require('../../services/fetchDataServices/userFetch/deleteFetch');
 let user1 = Object();
 user1.name = "User1";
 user1.email = "user1@user1.com";

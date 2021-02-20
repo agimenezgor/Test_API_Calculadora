@@ -3,11 +3,11 @@ const deleteDefaultUser = require('../../services/deleteDefaultUser.js/deleteDef
 const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser');
 
 // fetch del proveedor
-const registerFetch = require("./fetchData/registerFetch");
-const getSupplierFetch = require("./fetchData/getSupplierfetch");
-const deleteFetch = require("./fetchData/deleteFetch");
-const updateFetch = require("./fetchData/updateFetch");
-const getAllFetch = require("./fetchData/getAllFetch");
+const registerFetch = require("../../services/fetchDataServices/supplierFetch/registerFetch");
+const getSupplierFetch = require("../../services/fetchDataServices/supplierFetch/getSupplierfetch");
+const deleteFetch = require("../../services/fetchDataServices/supplierFetch/deleteFetch");
+const updateFetch = require("../../services/fetchDataServices/supplierFetch/updateFetch");
+const getAllFetch = require("../../services/fetchDataServices/supplierFetch/getAllFetch");
 
 // Proveedor por defecto
 const supplier = Object();

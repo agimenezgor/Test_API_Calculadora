@@ -1,4 +1,4 @@
-const deleteFetch = require('../../test/user/fetchData/deleteFetch');
+const deleteFetch = require('../fetchDataServices/userFetch/deleteFetch');
 
 async function deleteDefaultUser(email, token){
     const response = await deleteFetch(email, token);

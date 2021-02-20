@@ -1,5 +1,5 @@
-const registerFetch = require('../../test/user/fetchData/registerFetch');
-const loginFetch = require('../../test/user/fetchData/loginFetch');
+const registerFetch = require('../fetchDataServices/userFetch/registerFetch');
+const loginFetch = require('../fetchDataServices/userFetch/loginFetch');
 
 async function initDefaultUser(user) {
     let token = '';
