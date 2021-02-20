@@ -26,19 +26,14 @@ const supplier = Object();
 let token = '';
 let supplierInit = [];
 beforeAll(async (done) => {
-    try {
-        token = await initDefaultUser();
-        await supplierRegisterFetch(supplier, token);
-        done()
-    } catch (error) {
-        throw new Error('Error in reference beforeAll');
-    }
+    token = await initDefaultUser();
+    await supplierRegisterFetch(supplier, token);
+    done()
 })
 // Finalmente, borramos el usuario
 afterAll(async () => {
+    await supplierDeleteFetch(supplier.number, token);
     await deleteDefaultUser(token);
-    const response = await supplierDeleteFetch(supplier.number, token);
-    console.log(response)
 })
 describe('Reference tests', () => {
     describe('Register', () => {
@@ -55,7 +50,7 @@ describe('Reference tests', () => {
             // Assert
             expect(response.error.message).toBe("Reference validation failed: name: El nombre es necesario")
         })
-        /* test("pasamos número incorrecto", async () => {
+        test("pasamos número incorrecto", async () => {
             // Arrange
             const reference = Object();
             reference.name = "Test reference";
@@ -64,10 +59,10 @@ describe('Reference tests', () => {
             reference.facing = 2;
             reference.sales = 26;
             // Act
-            const response = await registerFetch(reference, token);
+            const response = await registerFetch(reference, supplierInit.number, token);
             // Assert
             expect(response.error.message).toBe("Supplier validation failed: number: La número de proveedor es necesario")
-        }) */
+        })
         /* test("pasamos condicionante incorrecto", async () => {
             // Arrange
             const reference = Object();
