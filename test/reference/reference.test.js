@@ -125,25 +125,25 @@ describe('Reference tests', () => {
             let id = response.reference.supplier + response.reference.number;
             expect(response.reference.id).toBe(id);
         })
-        /* test("modificando número", async () => {
+        test("modificando número", async () => {
             // Arrange
             const auxReference = Object();
-            auxReference.name = defualtReference.name;
+            auxReference.name = defaultReference.name;
             auxReference.number = 87654321;
             const beforeReference = await getReferenceFetch(12345678, token);
             const referenceId = beforeReference.supplier + auxReference.number;
             // Act
-            const response = await updateFetch(auxReference, 12345678, token);
+            const response = await updateFetch(auxReference, 12345678, supplier.number, token);
             // Assert
-            expect(response.message).toBe("Proveedor modificado correctamente");
-            expect(response.reference.name).toBe(defualtReferencename);
-            expect(parseInt(response.reference.number)).toBe(auxSupplier.number);
-            expect(response.reference.conditioning).toBe(defualtReference.conditioning);
-            expect(response.reference.facing).toBe(defualtReference);
-            expect(response.reference.sales).toBe(defualtReference.sales);
+            expect(response.message).toBe("Referencia actualizada correctamente");
+            expect(response.reference.name).toBe(defaultReference.name);
+            expect(parseInt(response.reference.number)).toBe(auxReference.number);
+            expect(response.reference.conditioning).toBe(defaultReference.conditioning);
+            expect(response.reference.facing).toBe(defaultReference);
+            expect(response.reference.sales).toBe(defaultReference.sales);
             let id = response.reference.supplier + auxReference.number;
             expect(response.reference.id).toBe(id);
-        })*/
+        })
     
     })
     /* describe('getAll', () => {
