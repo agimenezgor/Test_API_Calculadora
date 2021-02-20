@@ -139,7 +139,7 @@ describe('Reference tests', () => {
             expect(response.reference.name).toBe(defaultReference.name);
             expect(parseInt(response.reference.number)).toBe(auxReference.number);
             expect(response.reference.conditioning).toBe(defaultReference.conditioning);
-            expect(response.reference.facing).toBe(defaultReference);
+            expect(response.reference.facing).toBe(defaultReference.facing);
             expect(response.reference.sales).toBe(defaultReference.sales);
             let id = response.reference.supplier + auxReference.number;
             expect(response.reference.id).toBe(id);
