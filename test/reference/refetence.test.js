@@ -74,7 +74,7 @@ describe('Reference tests', () => {
             // Act
             const response = await registerFetch(reference, supplierInit.number, token);
             // Assert
-            expect(response.error.message).toBe("Supplier validation failed: days: La cantidad de días que tardan en servir es necesaria")
+            expect(response.error.message).toBe("Reference validation failed: conditioning: El condicionante es necesario")
         })
         /* test("pasamos datos correctos", async () => {
             // Act
