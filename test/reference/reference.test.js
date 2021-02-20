@@ -4,7 +4,7 @@ const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser'
 
 // fetch de la referencia
 const registerFetch = require("./fetchData/registerFetch");
-//const getSupplierFetch = require("./fetchData/getSupplierfetch");
+const getReferenceFetch = require("./fetchData/getReferencefetch");
 //const deleteFetch = require("./fetchData/deleteFetch");
 //const updateFetch = require("./fetchData/updateFetch");
 //const getAllFetch = require("./fetchData/getAllFetch");
@@ -31,17 +31,21 @@ const defaultReference = Object();
             defaultReference.sales = 100;
 
 // Primero creamos un usuario y guardamos el token.
-let token = '';
-let supplierInit = [];
-beforeAll(async (done) => {
+async function before(){
     token = await initDefaultUser();
     await supplierRegisterFetch(supplier, token);
-    done()
-})
-// Finalmente, borramos el usuario
-afterAll(async () => {
+}
+async function after() {
     await supplierDeleteFetch(supplier.number, token);
     await deleteDefaultUser(token);
+}
+let token = '';
+beforeAll(async() => {
+    return await before()
+})
+// Finalmente, borramos el usuario
+afterAll((done) => {
+    after().then(() => done());
 })
 describe('Reference tests', () => {
     describe('Register', () => {
@@ -54,7 +58,7 @@ describe('Reference tests', () => {
             reference.facing = 2;
             reference.sales = 26;
             // Act
-            const response = await registerFetch(reference, supplierInit.number, token);
+            const response = await registerFetch(reference, supplier.number, token);
             // Assert
             expect(response.error.message).toBe("Reference validation failed: name: El nombre es necesario")
         })
@@ -67,7 +71,7 @@ describe('Reference tests', () => {
             reference.facing = 2;
             reference.sales = 26;
             // Act
-            const response = await registerFetch(reference, supplierInit.number, token);
+            const response = await registerFetch(reference, supplier.number, token);
             // Assert
             expect(response.error.message).toBe("Reference validation failed: number: La número de referencia es necesario")
         })
@@ -80,29 +84,29 @@ describe('Reference tests', () => {
             reference.facing = 2;
             reference.sales = 26;
             // Act
-            const response = await registerFetch(reference, supplierInit.number, token);
+            const response = await registerFetch(reference, supplier.number, token);
             // Assert
             expect(response.error.message).toBe("Reference validation failed: conditioning: El condicionante es necesario")
         })
         test("pasamos datos correctos", async () => {
             // Act
-            const response = await registerFetch(defaultReference, supplierInit.number, token);
+            const response = await registerFetch(defaultReference, supplier.number, token);
             // Assert
             expect(response.message).toBe("Referencia guardada correctamente")
         })
     })
-    /* describe('getSupplier', () => {
-        test("comprobamos que se ha guardado el proveedor", async () => {
+    describe('getReference', () => {
+        test("comprobamos que se ha guardado la referencia", async () => {
             // Act
-            const response = await getSupplierFetch(12345678, token);
+            const response = await getReferenceFetch(supplier.number, 12345678, token);
             // Assert
-            expect(response.name).toBe(supplier.name);
-            expect(parseInt(response.number)).toBe(supplier.number);
-            expect(response.conditioning).toBe(supplier.conditioning);
+            expect(response.name).toBe(defaultReference.name);
+            expect(parseInt(response.number)).toBe(defaultReference.number);
+            expect(response.conditioning).toBe(defaultReference.conditioning);
             expect(response.facing).toBe(supplier.facing);
             expect(response.sales).toBe(supplier.sales);
         })
-    }) */
+    })
     /* describe('Update', () => {
         /* test("sin modificar número", async () => {
             // Arrange
