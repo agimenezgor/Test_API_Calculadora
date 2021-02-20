@@ -173,7 +173,7 @@ describe('Reference tests', () => {
             // Assert
             expect(references[0].name).toBe("Test reference");
             expect(references[1].name).toBe("Test reference 2");
-            expect(references[2].name).toBe("Test supplier 3");
+            expect(references[2].name).toBe("Test reference 3");
         })
     })
     /* describe('Delete', () => {
