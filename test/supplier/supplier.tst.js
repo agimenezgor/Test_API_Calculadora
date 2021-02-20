@@ -41,7 +41,8 @@ beforeAll(async () => {
 afterAll(async () => {
     await deleteDefaultUser(token)
 })
-describe('Supplier tests', () => {
+
+describe('Supplier tests',() => {
     describe('Register', () => {
         test("pasamos nombre incorrecto", async () => {
             // Arrange

@@ -6,7 +6,7 @@ const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser'
 const registerFetch = require("./fetchData/registerFetch");
 const getReferenceFetch = require("./fetchData/getReferencefetch");
 //const deleteFetch = require("./fetchData/deleteFetch");
-//const updateFetch = require("./fetchData/updateFetch");
+const updateFetch = require("./fetchData/updateFetch");
 //const getAllFetch = require("./fetchData/getAllFetch");
 
 // fetch del proveedor
@@ -100,30 +100,32 @@ describe('Reference tests', () => {
             // Act
             const response = await getReferenceFetch(supplier.number, 12345678, token);
             // Assert
+            debugger;
             expect(response.name).toBe(defaultReference.name);
             expect(parseInt(response.number)).toBe(defaultReference.number);
             expect(response.conditioning).toBe(defaultReference.conditioning);
-            expect(response.facing).toBe(supplier.facing);
-            expect(response.sales).toBe(supplier.sales);
+            expect(response.facing).toBe(defaultReference.facing);
+            expect(response.sales).toBe(defaultReference.sales);
         })
     })
-    /* describe('Update', () => {
-        /* test("sin modificar número", async () => {
+    describe('Update', () => {
+        test("sin modificar número", async () => {
             // Arrange
             const auxReference = Object();
             auxReference.name = "Modificado 1";
             // Act
-            const response = await updateFetch(auxReference, 12345678, token);
+            const response = await updateFetch(auxReference, 12345678, supplier.number, token);
+            console.log(response)
             // Assert
-            expect(response.message).toBe("Proveedor modificado correctamente");
+            expect(response.message).toBe("Referencia actualizada correctamente");
             expect(response.reference.name).toBe(defaultReference.name);
             expect(parseInt(response.supplier.number)).toBe(defaultReference.number);
             expect(response.reference.conditioning).toBe(defaultReference.conditioning);
             expect(response.reference.facing).toBe(defaultReference.facing);
-            expect(response.reference.sales).toBe(defaultReference.sales);
+            expect(response.reference.sales).toBe(0);
             let id = response.reference.supplier + response.reference.number;
             expect(response.reference.id).toBe(id);
-        }) */
+        })
         /* test("modificando número", async () => {
             // Arrange
             const auxReference = Object();
@@ -142,9 +144,9 @@ describe('Reference tests', () => {
             expect(response.reference.sales).toBe(defualtReference.sales);
             let id = response.reference.supplier + auxReference.number;
             expect(response.reference.id).toBe(id);
-        }) 
+        })*/
     
-    }) */
+    })
     /* describe('getAll', () => {
         test('nuevos proveedores', async () => {
             // Act
