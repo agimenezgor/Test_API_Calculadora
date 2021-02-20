@@ -160,7 +160,7 @@ describe('Reference tests', () => {
     
     })
     describe('getAll', () => {
-        test('nuevos proveedores', async () => {
+        test('nuevas referencias', async () => {
             // Act
             // Guardamos dos proveedores nuevos
             const response2 = await registerFetch(defaultReference2, supplier.number, token);
