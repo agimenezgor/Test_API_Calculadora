@@ -43,13 +43,17 @@ const defaultReference3 = Object();
             defaultReference3.sales = 100;
 
 // Primero creamos un usuario y guardamos el token.
+let user = Object();
+user.name = "user 3";
+user.email = "user3@user3.com";
+user.password = "12345678";
 async function before(){
-    token = await initDefaultUser();
+    token = await initDefaultUser(user);
     await supplierRegisterFetch(supplier, token);
 }
 async function after() {
     await supplierDeleteFetch(supplier.number, token);
-    await deleteDefaultUser(token);
+    await deleteDefaultUser(user.email, token);
 }
 let token = '';
 beforeAll(async() => {

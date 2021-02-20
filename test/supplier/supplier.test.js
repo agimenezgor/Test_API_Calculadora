@@ -34,12 +34,16 @@ const supplier3 = Object();
 
 // Primero creamos un usuario y guardamos el token.
 let token = '';
+let user = Object();
+user.name = "user 2";
+user.email = "user2@user2.com";
+user.password = "12345678";
 beforeAll(async () => {
-    token = await initDefaultUser();
+    token = await initDefaultUser(user);
 })
 // Finalmente, borramos el usuario
 afterAll(async () => {
-    await deleteDefaultUser(token)
+    await deleteDefaultUser(user.email, token)
 })
 
 describe('Supplier tests',() => {
