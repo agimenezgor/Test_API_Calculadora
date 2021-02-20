@@ -22,6 +22,14 @@ const supplier = Object();
             supplier.minPalets = 26;
             supplier.maxPalets = 26;
 
+// Referencias por defecto
+const defaultReference = Object();
+            defaultReference.name = "Test reference";
+            defaultReference.number = 12345678;
+            defaultReference.conditioning = 48;
+            defaultReference.facing = 2;
+            defaultReference.sales = 100;
+
 // Primero creamos un usuario y guardamos el token.
 let token = '';
 let supplierInit = [];
@@ -76,12 +84,12 @@ describe('Reference tests', () => {
             // Assert
             expect(response.error.message).toBe("Reference validation failed: conditioning: El condicionante es necesario")
         })
-        /* test("pasamos datos correctos", async () => {
+        test("pasamos datos correctos", async () => {
             // Act
-            const response = await registerFetch(defualtReference, supplierInit.number, token);
+            const response = await registerFetch(defaultReference, supplierInit.number, token);
             // Assert
             expect(response.message).toBe("Proveedor guardado correctamente")
-        }) */
+        })
     })
     /* describe('getSupplier', () => {
         test("comprobamos que se ha guardado el proveedor", async () => {
