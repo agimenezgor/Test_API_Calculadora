@@ -5,7 +5,7 @@ const initDefaultUser = require('../../services/initDefaultUser/initDefaultUser'
 // fetch de la referencia
 const registerFetch = require("./fetchData/registerFetch");
 const getReferenceFetch = require("./fetchData/getReferencefetch");
-//const deleteFetch = require("./fetchData/deleteFetch");
+const deleteFetch = require("./fetchData/deleteFetch");
 const updateFetch = require("./fetchData/updateFetch");
 const getAllFetch = require("./fetchData/getAllFetch");
 
@@ -176,18 +176,18 @@ describe('Reference tests', () => {
             expect(references[2].name).toBe("Test reference 3");
         })
     })
-    /* describe('Delete', () => {
-        /* test("Borramos el proveedor", async () => {
+    describe('Delete', () => {
+        test("Borramos las referencias", async () => {
             // Act
-            const response = await deleteFetch(87654321, token);
-            const response2 = await deleteFetch(defualtReference2.number, token);
-            const response3 = await deleteFetch(defualtReference3.number, token);
+            const response = await deleteFetch(supplier.number, 87654321, token);
+            const response2 = await deleteFetch(supplier.number, defaultReference2.number, token);
+            const response3 = await deleteFetch(supplier.number, defaultReference3.number, token);
 
             // Assert
-            expect(response.message).toBe("Proveedor borrado correctamente");
+            expect(response.message).toBe("Referencia borrada correctamente");
             expect(response2.message).toBe("Proveedor borrado correctamente");
             expect(response3.message).toBe("Proveedor borrado correctamente");
-        }) */
+        })
         /* test("Comprobamos que se ha borrado correctamente", async () => {
             // Act
             const response = await getReferenceFetch(12345678, token);
@@ -199,6 +199,6 @@ describe('Reference tests', () => {
             const response = await deleteFetch(defualtReference.number, token);
             // Assert
             expect(response.message).toBe("El proveedor no existe en la base de datos")
-        }) 
-    }) */
+        })*/
+    })
 })
