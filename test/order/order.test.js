@@ -124,6 +124,14 @@ describe('Order tests', () => {
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
+            const deleteReferenceResponse = await deleteFetch(paletsSupplier.number, defaultReference.number, token)
+            expect(deleteReferenceResponse.message).toBe("Referencia borrada correctamente");
+            const deleteReferenceResponse2 = await deleteFetch(paletsSupplier.number, defaultReference2.number, token)
+            expect(deleteReferenceResponse2.message).toBe("Referencia borrada correctamente");
+            const deleteReferenceResponse3 = await deleteFetch(paletsSupplier.number, defaultReference3.number, token)
+            expect(deleteReferenceResponse3.message).toBe("Referencia borrada correctamente");
+            const deleteSupplierResponse = await supplierDeleteFetch(paletsSupplier.number, token);
+            expect(deleteSupplierResponse.message).toBe("Proveedor borrado correctamente");
         })
         /* test('Espacio mayor o igual que minPalets y menor que maxPalets', async () => {
             // Arrange
