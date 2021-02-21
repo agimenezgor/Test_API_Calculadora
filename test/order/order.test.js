@@ -66,6 +66,20 @@ const defaultReference3 = Object();
             defaultReference3.facing = 30;
             defaultReference3.sales = 6000;
 
+
+async function initPaletReference () {
+    // iniciamos el proveedor
+    const supplierResponse = await supplierRegisterFetch(paletsSupplier, token);
+    expect(supplierResponse.message).toBe("Proveedor guardado correctamente")
+    
+        // iniciamos las referencias
+    const response1 = await registerFetch(defaultReference, paletsSupplier.number, token);
+    expect(response1.message).toBe("Referencia guardada correctamente")
+    const response2 = await registerFetch(defaultReference2, paletsSupplier.number, token);
+    expect(response2.message).toBe("Referencia guardada correctamente")
+    const response3 = await registerFetch(defaultReference3, paletsSupplier.number, token);
+    expect(response3.message).toBe("Referencia guardada correctamente")
+}
 // Iniciamos el usuario y guardamos el token
 let token = '';
 beforeAll( async () => {
@@ -97,17 +111,7 @@ describe('Order tests', () => {
     describe('Order a palets', () => {
         test('Espacio menor que minPalets', async () => {
             // Arrange
-                // iniciamos el proveedor
-            const supplierResponse = await supplierRegisterFetch(paletsSupplier, token);
-            expect(supplierResponse.message).toBe("Proveedor guardado correctamente")
-            
-                // iniciamos las referencias
-            const response1 = await registerFetch(defaultReference, paletsSupplier.number, token);
-            expect(response1.message).toBe("Referencia guardada correctamente")
-            const response2 = await registerFetch(defaultReference2, paletsSupplier.number, token);
-            expect(response2.message).toBe("Referencia guardada correctamente")
-            const response3 = await registerFetch(defaultReference3, paletsSupplier.number, token);
-            expect(response3.message).toBe("Referencia guardada correctamente")
+            await initPaletReference();
             const data = [10, 12, 15];
             
             // Act
@@ -117,7 +121,6 @@ describe('Order tests', () => {
             expectedResult[0] = 9;
             expectedResult[1] = 4;
             expectedResult[2]= 13;
-            console.log(response)
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
