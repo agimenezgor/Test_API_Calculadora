@@ -67,28 +67,28 @@ const defaultReference3 = Object();
             defaultReference3.sales = 6000;
 
 
-async function initPaletReference () {
+async function initPaletReference (supplier) {
     // iniciamos el proveedor
-    const supplierResponse = await supplierRegisterFetch(paletsSupplier, token);
+    const supplierResponse = await supplierRegisterFetch(supplier, token);
     expect(supplierResponse.message).toBe("Proveedor guardado correctamente")
     
         // iniciamos las referencias
-    const response1 = await registerFetch(defaultReference, paletsSupplier.number, token);
+    const response1 = await registerFetch(defaultReference, supplier.number, token);
     expect(response1.message).toBe("Referencia guardada correctamente")
-    const response2 = await registerFetch(defaultReference2, paletsSupplier.number, token);
+    const response2 = await registerFetch(defaultReference2, supplier.number, token);
     expect(response2.message).toBe("Referencia guardada correctamente")
-    const response3 = await registerFetch(defaultReference3, paletsSupplier.number, token);
+    const response3 = await registerFetch(defaultReference3, supplier.number, token);
     expect(response3.message).toBe("Referencia guardada correctamente")
 }
 
-async function deletePaletsReference() {
-    const deleteReferenceResponse = await deleteFetch(paletsSupplier.number, defaultReference.number, token)
+async function deletePaletsReference(supplier) {
+    const deleteReferenceResponse = await deleteFetch(supplier.number, defaultReference.number, token)
     expect(deleteReferenceResponse.message).toBe("Referencia borrada correctamente");
-    const deleteReferenceResponse2 = await deleteFetch(paletsSupplier.number, defaultReference2.number, token)
+    const deleteReferenceResponse2 = await deleteFetch(supplier.number, defaultReference2.number, token)
     expect(deleteReferenceResponse2.message).toBe("Referencia borrada correctamente");
-    const deleteReferenceResponse3 = await deleteFetch(paletsSupplier.number, defaultReference3.number, token)
+    const deleteReferenceResponse3 = await deleteFetch(supplier.number, defaultReference3.number, token)
     expect(deleteReferenceResponse3.message).toBe("Referencia borrada correctamente");
-    const deleteSupplierResponse = await supplierDeleteFetch(paletsSupplier.number, token);
+    const deleteSupplierResponse = await supplierDeleteFetch(supplier.number, token);
     expect(deleteSupplierResponse.message).toBe("Proveedor borrado correctamente");
 }
 // Iniciamos el usuario y guardamos el token
@@ -97,8 +97,6 @@ beforeAll( async () => {
     token = await initDefaultUser(user);
 })
 afterAll( async () => {
-    // borrar referencias
-    // borrar proveedores
     await deleteDefaultUser(user.email, token);
 })
 describe('Order tests', () => {
@@ -122,7 +120,7 @@ describe('Order tests', () => {
     describe('Order a palets', () => {
         test('Espacio menor que minPalets', async () => {
             // Arrange
-            await initPaletReference();
+            await initPaletReference(paletsSupplier);
             const data = [10, 12, 15];
             
             // Act
@@ -136,7 +134,7 @@ describe('Order tests', () => {
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
             // borramos los datos
-            await deletePaletsReference();
+            await deletePaletsReference(paletsSupplier);
         })
         /* test('Espacio mayor o igual que minPalets y menor que maxPalets', async () => {
             // Arrange
