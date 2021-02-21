@@ -118,7 +118,10 @@ describe('Order tests', () => {
         })
     }) */
     describe('Order a palets', () => {
-        test('Espacio menor que minPalets', async () => {
+        afterEach(async() => {
+            await deletePaletsReference(paletsSupplier);
+        })
+        test('test para refactorizar API', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
             const data = [10, 12, 15];
@@ -129,85 +132,92 @@ describe('Order tests', () => {
             const expectedResult = [];
             expectedResult[0] = 9;
             expectedResult[1] = 4;
-            expectedResult[2]= 13;
+            expectedResult[2] = 13;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-            // borramos los datos
-            await deletePaletsReference(paletsSupplier);
         })
-        test('Espacio igual que minPalets', async () => {
+        /* test('Espacio menor que minPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
-            const data = [10, 12, 15];
+            const data = [10, 5, 16];
+            
+            // Act
+            const response = await orderFetch(data, paletsSupplier.number, token);
+            console.log(response)
+            // Assert
+            const expectedResult = [];
+            expectedResult[0] = 2;
+            expectedResult[1] = 1;
+            expectedResult[2] = 1;
+            expect(response.orderArray[0].palets).toBe(expectedResult[0]);
+            expect(response.orderArray[1].palets).toBe(expectedResult[1]);
+            expect(response.orderArray[2].palets).toBe(expectedResult[2]);
+        }) */
+        /* test('Espacio igual que minPalets', async () => {
+            // Arrange
+            await initPaletReference(paletsSupplier);
+            const data = [10, 5, 15];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
             // Assert
             const expectedResult = [];
-            expectedResult[0] = 9;
-            expectedResult[1] = 4;
-            expectedResult[2]= 13;
+            expectedResult[0] = 2;
+            expectedResult[1] = 1;
+            expectedResult[2] = 2;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-            // borramos los datos
-            await deletePaletsReference(paletsSupplier);
-        })
-        test('Espacio mayor que minPalets y menor que maxPalets', async () => {
+        }) */
+        /* test('Espacio mayor que minPalets y menor que maxPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
-            const data = [10, 12, 15];
+            const data = [9, 5, 14];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
             // Assert
             const expectedResult = [];
-            expectedResult[0] = 9;
-            expectedResult[1] = 4;
-            expectedResult[2]= 13;
+            expectedResult[0] = 3;
+            expectedResult[1] = 1;
+            expectedResult[2] = 3;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-            // borramos los datos
-            await deletePaletsReference(paletsSupplier);
-        })
-        test('Espacio igual que maxPalets', async () => {
+        }) */
+        /* test('Espacio igual que maxPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
-            const data = [10, 12, 15];
+            const data = [8, 5, 13];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
             // Assert
             const expectedResult = [];
-            expectedResult[0] = 9;
-            expectedResult[1] = 4;
-            expectedResult[2]= 13;
+            expectedResult[0] = 4;
+            expectedResult[1] = 2;
+            expectedResult[2] = 4;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-            // borramos los datos
-            await deletePaletsReference(paletsSupplier);
-        })
-        test('Espacio mayor que maxPalets', async () => {
+        }) */
+        /* test('Espacio mayor que maxPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
-            const data = [10, 12, 15];
+            const data = [8, 5, 12];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
             // Assert
             const expectedResult = [];
-            expectedResult[0] = 9;
-            expectedResult[1] = 4;
-            expectedResult[2]= 13;
+            expectedResult[0] = 4;
+            expectedResult[1] = 5;
+            expectedResult[2] = 5;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-            // borramos los datos
-            await deletePaletsReference(paletsSupplier);
-        })
+        }) */
     })
     /* describe('Order a kilos', () => {
         test('Espacio menor que minKilos', async () => {
