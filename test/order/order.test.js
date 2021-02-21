@@ -21,50 +21,33 @@ user.email = "orderUser@test.com";
 user.password = "12345678";
 
 // Proveedores por defecto
-// Proveedor por palets
 const paletsSupplier = Object();
             paletsSupplier.name = "Test reference supplier";
             paletsSupplier.number = 12345677;
             paletsSupplier.days = 3;
             paletsSupplier.calculateType = "Palets";
-            paletsSupplier.minPalets = 26;
-            paletsSupplier.maxPalets = 26;
-// Proveedor por kilos
-const kilosSupplier = Object();
-            kilosSupplier.name = "Test reference supplier";
-            kilosSupplier.number = 12345678;
-            kilosSupplier.days = 3;
-            kilosSupplier.calculateType = "Kilos";
-            kilosSupplier.minPalets = 26;
-            kilosSupplier.maxPalets = 26;
-// Proveedor por Franco
-const moneySupplier = Object();
-            moneySupplier.name = "Test reference supplier";
-            moneySupplier.number = 12345679;
-            moneySupplier.days = 3;
-            moneySupplier.calculateType = "Franco";
-            moneySupplier.minPalets = 26;
-            moneySupplier.maxPalets = 26;
+            paletsSupplier.minPalets = 5;
+            paletsSupplier.maxPalets = 10;
 
 // Referencias por defecto
 const defaultReference = Object();
             defaultReference.name = "Test reference";
             defaultReference.number = 12345677;
             defaultReference.conditioning = 48;
-            defaultReference.facing = 24;
-            defaultReference.sales = 4000;
+            defaultReference.facing = 10;
+            defaultReference.sales = 9600;
 const defaultReference2 = Object();
             defaultReference2.name = "Test reference 2";
             defaultReference2.number = 12345678;
             defaultReference2.conditioning = 48;
-            defaultReference2.facing = 24;
-            defaultReference2.sales = 3500;
+            defaultReference2.facing = 10;
+            defaultReference2.sales = 4800;
 const defaultReference3 = Object();
             defaultReference3.name = "Test reference 3";
             defaultReference3.number = 12345679;
             defaultReference3.conditioning = 48;
-            defaultReference3.facing = 30;
-            defaultReference3.sales = 6000;
+            defaultReference3.facing = 15;
+            defaultReference3.sales = 14400;
 
 
 async function initPaletReference (supplier) {
@@ -121,40 +104,23 @@ describe('Order tests', () => {
         afterEach(async() => {
             await deletePaletsReference(paletsSupplier);
         })
-        test('test para refactorizar API', async () => {
-            // Arrange
-            await initPaletReference(paletsSupplier);
-            const data = [10, 12, 15];
-            
-            // Act
-            const response = await orderFetch(data, paletsSupplier.number, token);
-            // Assert
-            const expectedResult = [];
-            expectedResult[0] = 9;
-            expectedResult[1] = 4;
-            expectedResult[2] = 13;
-            expect(response.orderArray[0].palets).toBe(expectedResult[0]);
-            expect(response.orderArray[1].palets).toBe(expectedResult[1]);
-            expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-        })
-        /* test('Espacio menor que minPalets', async () => {
+        test('Espacio menor que minPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
             const data = [10, 5, 16];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
-            console.log(response)
             // Assert
             const expectedResult = [];
             expectedResult[0] = 2;
             expectedResult[1] = 1;
-            expectedResult[2] = 1;
+            expectedResult[2] = 2;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-        }) */
-        /* test('Espacio igual que minPalets', async () => {
+        })
+        test('Espacio igual que minPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
             const data = [10, 5, 15];
@@ -169,8 +135,8 @@ describe('Order tests', () => {
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-        }) */
-        /* test('Espacio mayor que minPalets y menor que maxPalets', async () => {
+        })
+        test('Espacio mayor que minPalets y menor que maxPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
             const data = [9, 5, 14];
@@ -185,11 +151,11 @@ describe('Order tests', () => {
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-        }) */
-        /* test('Espacio igual que maxPalets', async () => {
+        })
+        test('Espacio igual que maxPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
-            const data = [8, 5, 13];
+            const data = [8, 4, 13];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
@@ -201,23 +167,23 @@ describe('Order tests', () => {
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-        }) */
-        /* test('Espacio mayor que maxPalets', async () => {
+        })
+        test('Espacio mayor que maxPalets', async () => {
             // Arrange
             await initPaletReference(paletsSupplier);
-            const data = [8, 5, 12];
+            const data = [8, 4, 12];
             
             // Act
             const response = await orderFetch(data, paletsSupplier.number, token);
             // Assert
             const expectedResult = [];
-            expectedResult[0] = 4;
-            expectedResult[1] = 5;
+            expectedResult[0] = 3;
+            expectedResult[1] = 2;
             expectedResult[2] = 5;
             expect(response.orderArray[0].palets).toBe(expectedResult[0]);
             expect(response.orderArray[1].palets).toBe(expectedResult[1]);
             expect(response.orderArray[2].palets).toBe(expectedResult[2]);
-        }) */
+        })
     })
     /* describe('Order a kilos', () => {
         test('Espacio menor que minKilos', async () => {
